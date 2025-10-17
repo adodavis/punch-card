@@ -1,0 +1,491 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap');
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+
+/*containers in list of scorecards (main page) */
+.app-title-container {
+  font-family: 'Bebas Nue', sans-serif;
+  font-size: 1.0rem;
+  color: #f0f0f0;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px black;
+  margin-bottom: 1rem;
+}
+
+h1, h2 {
+  font-family: 'Bebas Nue', sans-serif;
+  letter-spacing: 1px;
+}
+
+button, select, input, textarea {
+  font-family: 'Inter', sans-serif;
+}
+
+.scorecards-list {
+  min-height: 100vh;
+  position: relative;
+}
+
+.search-container {
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+.search-btn {
+  background-color: transparent;
+  border: none;
+  padding: 4px;
+}
+
+.search-btn img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.search-btn img:hover {
+  transform: scale(1.08);
+}
+
+.search-input {
+  display: block;
+  margin: 10px auto;
+  padding: 8px;
+  font-size: 14px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-fight-btn button {
+  all: unset;
+  background-color: #007bff;
+  border: none;
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: 500;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 45px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  line-height: 60px;
+  padding: 0;
+  transition: transform 0.2s ease, box-shadow;
+}
+
+.add-fight-btn span {
+  display: inline-block;
+  transform: translateY(-1px);
+}
+
+.add-fight-btn button:hover {
+  opacity: 1;
+  transform: scale(1.08);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+.add-fight-form {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(39, 37, 37);
+  color: gray;
+  padding: 20px;
+  border: none;
+  border-radius: 8px;
+  z-index: 1000;
+  width: 250px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-fight-form input, .add-fight-form select {
+  text-align: center;
+  margin: 5px;
+}
+
+.add-fight-form button {
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.add-fight-form-date-container, .add-fight-form-rds-container, .add-fight-form-champ-container {
+  text-align: center;
+}
+
+.add-fight-form-cls-btn button {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+}
+
+.add-fight-form-submit-btn {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.scorecard-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scorecard-box-container {
+  background-color: gray;
+  margin-bottom: 10px;
+  width: 350px;
+  max-width: 100%;
+  min-width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+  padding: 10px;
+  border: 2px outset black;
+}
+
+.scorecard-box-container:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.card-names-container, .card-rds-container, .card-date-container, .card-result-container {
+  text-align: center;
+  width: 100%;
+}
+
+.card-names-container p, .card-rds-container p, .card-date-container p, .card-result-container p {
+  margin: 5px 0;
+  color: #fff;
+  text-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.5);
+}
+
+.card-names-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.card-names-container p {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.championship-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 4px;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.card-result-container {
+  font-size: 14px;
+}
+
+.delete-btn-container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+}
+
+.delete-btn-container:hover {
+  font-size: 20px;
+}
+
+.import-export-btn {
+  background-color: transparent;
+  font-size: 16px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 20px;
+  left: 20px;
+  position: fixed;
+  z-index: 9999;
+}
+
+.import-export-btn img {
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  opacity: 0.8;
+  fill: white;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1000;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.import-export-btn img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.import-export-popup {
+  display: flex;
+  flex-direction: column;
+  color: gray;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 340px;
+  height: 275px;
+  font-size: 15px;
+  text-align: center;
+  background-color: rgb(39,37, 37);
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  z-index: 1000;
+  box-shadow: 0px 0px 0px 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.import-export-popup h2 {
+  margin-left: 2px;
+  margin-top: 40px;
+}
+
+.import-export-cls-btn {
+  position: absolute;
+  top: 6px;
+  left: 1px;
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  color: white;
+}
+
+.import-btn {
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+.import-btn, .export-btn {
+  width: 200px;
+  border-radius: 7px;
+  border-width: 1px;
+}
+
+/* Containers within selected scorecards */
+.scorecard-page-container {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.fighters-names-container {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 100%;
+ text-align: center;
+ white-space: nowrap;
+ font-size: 13px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ margin-bottom: 10px;
+}
+
+.back-btn button {
+  position: absolute;
+  top: 55px;
+  left: 1px;
+  background-color: transparent;
+  color: white;
+  padding: 8px 12px;
+  z-index: 1000;
+  font-size: 17px;
+  margin-top: 17px;
+  margin-right: 10px
+}
+
+.back-btn:focus {
+  outline: none;
+}
+
+.back-btn:hover button {
+  text-decoration: underline;
+}
+
+.score-input-container {
+  border: 2px solid rgba(128, 128, 128, 0.527);
+  width: 250px;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-input {
+  margin: 0 5px;
+}
+
+.score-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.note-btn {
+  background-color: transparent;
+  border: none;
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out;
+  color: white;
+}
+
+.note-btn:hover {
+  opacity: 1;
+}
+
+.close-rd-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 10px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rd-label {
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.notes-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(39, 37, 37);
+  color: white;
+  border: 1px solid rgba(128, 128, 128, 0.527);
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.notes-popup h2 {
+  margin-top: 0;
+}
+
+.notes-popup textarea {
+  width: 175px;
+  height: 100px;
+}
+
+.notes-popup button {
+  margin-right: 10px;
+}
+
+.winner-container {
+  color: white;
+  text-align: center;
+}
+
+.total-scores-container {
+  display: flex;
+  justify-content: center;
+  font-size: larger;
+}
+
+.outcome-popup, .winner-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(39, 37, 37);
+  color: gray;
+  padding: 20px;
+  border: none;
+  border-radius: 8px;
+  z-index: 1000;
+  width: 300px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.outcome-popup h2, .winner-popup h2 {
+  margin-top: 0;
+}
+
+.outcome-popup select, .winner-popup select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.outcome-popup button, .winner-popup button {
+  background-color: #007bff;
+  padding: 8px, 12px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 7px;
+}
+
+.outcome-popup button:hover, .winner-popup button:hover {
+  background-color: #0056b3;
+}
+
+.end-fight-btn button:hover {
+  border: none;
+  border-radius: 4px;
+  background-color: red;
+}
