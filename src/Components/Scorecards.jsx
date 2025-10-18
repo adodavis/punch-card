@@ -42,7 +42,7 @@ const ResultDisplay = ( {fighterA, fighterB, totalScoreA, totalScoreB, outcome, 
 
         return (
             <div>
-                <p>{lastName} {outcome} {roundScores.filter(round => round.fighterA > 0 && round.fighterB > 0).length}</p>
+                <p>{lastName} {outcome} {(roundScores.filter(round => round.fighterA > 0 && round.fighterB > 0)).length + 1}</p>
             </div>
         )
     }
