@@ -279,7 +279,7 @@ function Scorecard() {
             {/*Displays total scores after round 1 is scored for both fighters */}
             {fighterATotalScore > 0 && fighterBTotalScore > 0 && (
                 <div className="total-scores-container">
-                    <label style={{ fontWeight: 'bold', color: 'white'}}>{fighterATotalScore}-{fighterBTotalScore}</label>
+                    <label>{fighterATotalScore}-{fighterBTotalScore}</label>
                 </div>
             )}
 

@@ -254,7 +254,7 @@ function Scorecards() {
     return (
         <div className="scorecards-list">
             <div className="app-title-container">
-                <h1>🥊Punch Card 🥊</h1>
+                <h1>🥊 Punch Card 🥊</h1>
             </div>
 
             {showAddFightButton && (
@@ -408,7 +408,7 @@ function Scorecards() {
 
             {showImportExportPopup && (
                 <div className="import-export-popup">
-                    <h2>Import/Export Scorecards</h2>
+                    <h3>Import/Export Scorecards</h3>
 
                     <button className="import-btn" onClick={triggerFileInput}>Import Scorecards</button>
                     <input 
