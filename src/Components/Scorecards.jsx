@@ -173,6 +173,20 @@ function Scorecards() {
         document.getElementById('file-input').click();
     }
 
+    // Restores saved state once the component mounts
+    useEffect(() => {
+        const stored = localStorage.getItem('scorecards');
+        
+        if (stored) {
+            try {
+                setScorecards(JSON.parse(stored));
+            }
+            catch (err) {
+                console.warn('Error parsing stored scorecards', err);
+            }
+        }
+    }, [])
+
     // Logic  for importing scorecards from a .JSON file
     const handleImport = (event) => {
         const file = event.target.files[0]; // Get the selected file
@@ -195,10 +209,8 @@ function Scorecards() {
     }
 
     // Saves scorecards to local storage
-    useEffect(() => {
-        if (scorecards.length > 0) {
-            localStorage.setItem('scorecards', JSON.stringify(scorecards));
-        }
+     useEffect(() => {
+        localStorage.setItem('scorecards', JSON.stringify(scorecards));
     }, [scorecards])
 
     // Loads scorecards from local storage when the component mounts
@@ -238,7 +250,7 @@ function Scorecards() {
                 }
             })
         }
-    }, [fightData])
+    }, [fightData])   
 
     return (
         <div className="scorecards-list">
