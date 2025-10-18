@@ -169,6 +169,13 @@ function Scorecards() {
         window.URL.revokeObjectURL(url);    // Clean up URL object
     }
 
+    // Accounts for changed variable name for number of rounds in previous app version
+    const migrateScorecard = (card) => ({
+        ...card,
+        numRounds: card.numRound ?? card.rounds ?? 0,
+        fightDate: card.fightDate ?? card.date ?? '',
+    })
+
     // Allows user to select a file to import
     const triggerFileInput = () => {
         document.getElementById('file-input').click();
@@ -183,7 +190,7 @@ function Scorecards() {
 
             reader.onload = (e) => {
                 try {
-                    const importedData = JSON.parse(e.target.result);
+                    const importedData = JSON.parse(e.target.result).map(migrateScorecard);
                     setScorecards((prevScorecards) => [...prevScorecards, ...(Array.isArray(importedData) ? importedData : [importedData])]);   // Update scorecards with appended data
                 }
                 catch (error) {
