@@ -75,6 +75,7 @@ function Scorecards() {
     const [showSearchBar, setShowSearchBar] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [showImportExportPopup, setShowImportExportPopup] = useState(false);
+    const [hasLoaded, setHasLoaded] = useState(false);
     const navigate = useNavigate();
 
     const toggleAddFightForm = () => {
@@ -173,20 +174,6 @@ function Scorecards() {
         document.getElementById('file-input').click();
     }
 
-    // Restores saved state once the component mounts
-    useEffect(() => {
-        const stored = localStorage.getItem('scorecards');
-        
-        if (stored) {
-            try {
-                setScorecards(JSON.parse(stored));
-            }
-            catch (err) {
-                console.warn('Error parsing stored scorecards', err);
-            }
-        }
-    }, [])
-
     // Logic  for importing scorecards from a .JSON file
     const handleImport = (event) => {
         const file = event.target.files[0]; // Get the selected file
@@ -208,21 +195,26 @@ function Scorecards() {
         }
     }
 
-    // Saves scorecards to local storage
+    // Saves scorecards to local storage only after data has been loaded once
      useEffect(() => {
-        localStorage.setItem('scorecards', JSON.stringify(scorecards));
-    }, [scorecards])
+        if (hasLoaded) {
+            localStorage.setItem('scorecards', JSON.stringify(scorecards));
+        }
+    }, [scorecards, hasLoaded])
 
-    // Loads scorecards from local storage when the component mounts
+    // Restores scorecards and merges any saved fightData updates 
     useEffect(() => {
-        const savedScorecards = localStorage.getItem('scorecards');
+        const stored = localStorage.getItem('scorecards');
 
-        if (savedScorecards) {
-            setScorecards(JSON.parse(savedScorecards));
+        if (stored) {
+            try {
+               setScorecards(JSON.parse(stored));
+            }
+            catch (err) {
+                console.warn('Error parsing stored scorecards', err);
+            }
         }
-        else {
-            setScorecards([]);
-        }
+        setHasLoaded(true);
     }, [])
 
     // Syncs the current fightData changes back to the main scorecards array
