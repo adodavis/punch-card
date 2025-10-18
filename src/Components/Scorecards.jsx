@@ -172,7 +172,7 @@ function Scorecards() {
     // Accounts for changed variable name for number of rounds in previous app version
     const migrateScorecard = (card) => ({
         ...card,
-        numRounds: card.numRound ?? card.rounds ?? 0,
+        numRounds: card.numRounds ?? card.rounds ?? 0,
         fightDate: card.fightDate ?? card.date ?? '',
     })
 
@@ -184,22 +184,31 @@ function Scorecards() {
     // Logic  for importing scorecards from a .JSON file
     const handleImport = (event) => {
         const file = event.target.files[0]; // Get the selected file
-        
-        if (file) {
-            const reader = new FileReader();
 
-            reader.onload = (e) => {
+        if (!file)
+            return;
+        
+        const reader = new FileReader();
+        reader.onload = (e) => {
                 try {
                     const importedData = JSON.parse(e.target.result).map(migrateScorecard);
-                    setScorecards((prevScorecards) => [...prevScorecards, ...(Array.isArray(importedData) ? importedData : [importedData])]);   // Update scorecards with appended data
+                    const updated = Array.isArray(importedData) ? importedData : [importedData];
+                    localStorage.setItem('scorecards',JSON.stringify(updated));
+                    setScorecards(updated);
+
+                    updated.forEach((fight) => {
+                        if (fight.id) {
+                            localStorage.setItem(`fight-${fight.id}`, JSON.stringify(fight));
+                        }
+                    })
+                    alert("Scorecards imported successfully");
                 }
                 catch (error) {
                     console.warn('Error parsing the imported file', error);
+                    alert("Failed to import file.");
                 }
             }
-
             reader.readAsText(file);
-        }
     }
 
     // Saves scorecards to local storage only after data has been loaded once
