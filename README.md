@@ -16,5 +16,7 @@ Punch Card is a web-based application for scoring boxing matches in real-time. I
 
 This tool is designed for boxing enthusiasts, analysts, and aspiring judges who want to score and archive fights with ease.
 
+👉 Score and record fights [here](https://adodavis.github.io/punch-card/)
+
 #
 **License:** This project is proprietary and not open for redistribution or reuse without explicit permission.
