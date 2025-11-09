@@ -186,6 +186,20 @@ function Scorecard() {
         localStorage.setItem(`fight-${fightData.id}`, JSON.stringify(fightData));
     }, [roundScores, winner, outcome]);
 
+    // Saves roundNotes and close rounds when either changes
+    useEffect(() => {
+        if (!fightData?.id)
+            return;
+
+        if (roundNotes.length > 0) {
+            localStorage.setItem(`fight-${fightData.id}-roundNotes`, JSON.stringify(roundNotes));
+        }
+
+        if (closeRounds.length > 0) {
+            localStorage.setItem(`fight-${fightData.id}-closeRounds`, JSON.stringify(closeRounds));
+        }
+    }, [roundNotes, closeRounds]);
+
     // Loads fight data from local storage when the component mounts
     useEffect(() => {
         const id = fightData.id || localStorage.getItem('activeFightId');
@@ -197,6 +211,17 @@ function Scorecard() {
 
         if (savedFightData) {
             setFightData(JSON.parse(savedFightData));
+        }
+
+        const savedRoundNotes = localStorage.getItem(`fight-${fightData.id}-roundNotes`);
+        const savedCloseRounds = localStorage.getItem(`fight-${fightData.id}-closeRounds`);
+
+        if (savedRoundNotes) {
+            setRoundNotes(JSON.parse(savedRoundNotes));
+        }
+
+        if (savedCloseRounds) {
+            setCloseRounds(JSON.parse(savedCloseRounds));
         }
     }, [])
 

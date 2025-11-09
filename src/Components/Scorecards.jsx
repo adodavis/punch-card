@@ -147,6 +147,8 @@ function Scorecards() {
         setScorecards(updatedScorecards);
         localStorage.setItem('scorecards', JSON.stringify(updatedScorecards));
         localStorage.removeItem(`fight-${id}`); // Remove associated fight data
+        localStorage.removeItem(`fight-${id}-roundNotes`);
+        localStorage.removeItem(`fight-${id}-closeRounds`);
     }
 
     // Filter the scorecards based on search term 
